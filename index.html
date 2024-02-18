@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>LOVE ME?!!!</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  <div class="card">
+    <h1 class="display-4 mt-4">Do You Love Me <strong>Francis chinaza</strong>?</h1>
+    <!-- <img src="image.png" class="img-thumbnail img-fluid rounded-circle mx-auto d-block mt-4" alt="Heart Image"> -->
+    <img src="image.png" class="img-thumbnail img-fluid rounded-circle mx-auto d-block mt-4" alt="Heart Image">
+  <p class="lead mt-4">Click on the buttons below to express your love:</p>
+
+  <p class="message text-muted"> <!-- Add the Bootstrap classes -->
+  <!-- The result message will be inserted here dynamically -->
+  </p>
+    <div class="options">
+      <button id="yesBtn" class="btn btn-primary mx-2">Yes</button>
+      <button id="noBtn" class="btn btn-danger mx-2">No</button>
+    </div>
+  </div>
+  
+  <audio id="awwwSound">
+    <source src="awww.m4a" type="audio/mpeg">
+  </audio>
+  
+  <audio id="oopsSound">
+    <source src="oops.m4a" type="audio/mpeg">
+  </audio>
+  
+
+  <!-- Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="resultModalLabel">Result</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Result message will be inserted here dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script>
+  document.getElementById('yesBtn').addEventListener('click', function () {
+  if (!this.disabled) {
+    this.disabled = true;
+    document.getElementById('noBtn').disabled = true;
+    var message = "Awww&#128525; I love you too!";
+    showModal(message);
+    document.getElementById('awwwSound').play();
+  }
+});
+
+document.getElementById('noBtn').addEventListener('click', function () {
+  if (!this.disabled) {
+    this.disabled = true;
+    document.getElementById('yesBtn').disabled = true;
+    var message = "&#128148; But I Love You.";
+    showModal(message);
+    document.getElementById('oopsSound').play();
+  }
+});
+
+function showModal(message) {
+  var modalBody = document.getElementById('modalBody');
+  modalBody.innerHTML = message;
+  var myModal = new bootstrap.Modal(document.getElementById('resultModal'));
+  myModal.show();
+}
+  </script>
+</body>
+</html>
